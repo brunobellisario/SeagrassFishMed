@@ -1,0 +1,242 @@
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+            <meta name="mobile-web-app-capable" content="yes">
+            <meta name="apple-mobile-web-app-capable" content="yes">
+            <link rel="stylesheet" href="css/leaflet.css">
+            <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+            <link rel="stylesheet" href="css/leaflet-measure.css">
+            <style>
+            html, body, #map {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            </style>
+            <title></title>
+        </head>
+        <body>
+            <div id="map">
+            </div>
+            <script src="js/qgis2web_expressions.js"></script>
+            <script src="js/leaflet.js"></script>
+            <script src="js/leaflet.rotatedMarker.js"></script>
+            <script src="js/leaflet.pattern.js"></script>
+            <script src="js/leaflet-hash.js"></script>
+            <script src="js/Autolinker.min.js"></script>
+            <script src="js/rbush.min.js"></script>
+            <script src="js/labelgun.min.js"></script>
+            <script src="js/labels.js"></script>
+            <script src="js/leaflet-measure.js"></script>
+            <script src="data/Administrativeboundaries_0.js"></script>
+            <script src="data/Riorganizzato_1.js"></script>
+            <script>
+            var map = L.map('map', {
+                zoomControl:true, maxZoom:28, minZoom:1
+            }).fitBounds([[-0.0008598172822581529,10.510643998903511],[-0.0006286631128657017,10.51104595087268]]);
+            var hash = new L.Hash(map);
+            map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+            var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+            var measureControl = new L.Control.Measure({
+                position: 'topleft',
+                primaryLengthUnit: 'meters',
+                secondaryLengthUnit: 'kilometers',
+                primaryAreaUnit: 'sqmeters',
+                secondaryAreaUnit: 'hectares'
+            });
+            measureControl.addTo(map);
+            document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+            .innerHTML = '';
+            document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+            .className += ' fas fa-ruler';
+            var bounds_group = new L.featureGroup([]);
+            function setBounds() {
+            }
+            function pop_Administrativeboundaries_0(feature, layer) {
+                var popupContent = '<table>\
+                        <tr>\
+                            <td colspan="2">' + (feature.properties['status'] !== null ? autolinker.link(feature.properties['status'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2">' + (feature.properties['color_code'] !== null ? autolinker.link(feature.properties['color_code'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2">' + (feature.properties['region'] !== null ? autolinker.link(feature.properties['region'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2">' + (feature.properties['iso3'] !== null ? autolinker.link(feature.properties['iso3'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2">' + (feature.properties['continent'] !== null ? autolinker.link(feature.properties['continent'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2">' + (feature.properties['iso_3166_1_'] !== null ? autolinker.link(feature.properties['iso_3166_1_'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2">' + (feature.properties['french_shor'] !== null ? autolinker.link(feature.properties['french_shor'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                    </table>';
+                layer.bindPopup(popupContent, {maxHeight: 400});
+            }
+    
+            function style_Administrativeboundaries_0_0() {
+                return {
+                    pane: 'pane_Administrativeboundaries_0',
+                    opacity: 1,
+                    color: 'rgba(97,97,97,1.0)',
+                    dashArray: '',
+                    lineCap: 'butt',
+                    lineJoin: 'miter',
+                    weight: 1.0, 
+                    fill: true,
+                    fillOpacity: 1,
+                    fillColor: 'rgba(211,212,210,1.0)',
+                    interactive: true,
+                }
+            }
+            map.createPane('pane_Administrativeboundaries_0');
+            map.getPane('pane_Administrativeboundaries_0').style.zIndex = 400;
+            map.getPane('pane_Administrativeboundaries_0').style['mix-blend-mode'] = 'normal';
+            var layer_Administrativeboundaries_0 = new L.geoJson(json_Administrativeboundaries_0, {
+                attribution: '',
+                interactive: true,
+                dataVar: 'json_Administrativeboundaries_0',
+                layerName: 'layer_Administrativeboundaries_0',
+                pane: 'pane_Administrativeboundaries_0',
+                onEachFeature: pop_Administrativeboundaries_0,
+                style: style_Administrativeboundaries_0_0,
+            });
+            bounds_group.addLayer(layer_Administrativeboundaries_0);
+            map.addLayer(layer_Administrativeboundaries_0);
+            function pop_Riorganizzato_1(feature, layer) {
+                var popupContent = '<table>\
+                        <tr>\
+                            <th scope="row">Ecoregion</th>\
+                            <td>' + (feature.properties['Ecoregion'] !== null ? autolinker.link(feature.properties['Ecoregion'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">FAO_Zone</th>\
+                            <td>' + (feature.properties['FAO_Zone'] !== null ? autolinker.link(feature.properties['FAO_Zone'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">GFCM_Area</th>\
+                            <td>' + (feature.properties['GFCM_Area'] !== null ? autolinker.link(feature.properties['GFCM_Area'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">Locality</th>\
+                            <td>' + (feature.properties['Locality'] !== null ? autolinker.link(feature.properties['Locality'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">Latitude</th>\
+                            <td>' + (feature.properties['Latitude'] !== null ? autolinker.link(feature.properties['Latitude'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">Longitude</th>\
+                            <td>' + (feature.properties['Longitude'] !== null ? autolinker.link(feature.properties['Longitude'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">Habitat</th>\
+                            <td>' + (feature.properties['Habitat'] !== null ? autolinker.link(feature.properties['Habitat'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">Dominant Segrass</th>\
+                            <td>' + (feature.properties['Dominant Segrass'] !== null ? autolinker.link(feature.properties['Dominant Segrass'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">Substrate</th>\
+                            <td>' + (feature.properties['Substrate'] !== null ? autolinker.link(feature.properties['Substrate'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">Author(s)</th>\
+                            <td>' + (feature.properties['Author(s)'] !== null ? autolinker.link(feature.properties['Author(s)'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">Title</th>\
+                            <td>' + (feature.properties['Title'] !== null ? autolinker.link(feature.properties['Title'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">Year</th>\
+                            <td>' + (feature.properties['Year'] !== null ? autolinker.link(feature.properties['Year'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">Journal</th>\
+                            <td>' + (feature.properties['Journal'] !== null ? autolinker.link(feature.properties['Journal'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <th scope="row">DOI</th>\
+                            <td>' + (feature.properties['DOI'] !== null ? autolinker.link(feature.properties['DOI'].toLocaleString()) : '') + '</td>\
+                        </tr>\
+                    </table>';
+                layer.bindPopup(popupContent, {maxHeight: 400});
+            }
+    
+            function style_Riorganizzato_1_0() {
+                return {
+                    pane: 'pane_Riorganizzato_1',
+                    radius: 6.0,
+                    opacity: 1,
+                    color: 'rgba(255,255,255,1.0)',
+                    dashArray: '',
+                    lineCap: 'butt',
+                    lineJoin: 'miter',
+                    weight: 1,
+                    fill: true,
+                    fillOpacity: 1,
+                    fillColor: 'rgba(31,120,180,1.0)',
+                    interactive: true,
+                }
+            }
+            map.createPane('pane_Riorganizzato_1');
+            map.getPane('pane_Riorganizzato_1').style.zIndex = 401;
+            map.getPane('pane_Riorganizzato_1').style['mix-blend-mode'] = 'normal';
+            var layer_Riorganizzato_1 = new L.geoJson(json_Riorganizzato_1, {
+                attribution: '',
+                interactive: true,
+                dataVar: 'json_Riorganizzato_1',
+                layerName: 'layer_Riorganizzato_1',
+                pane: 'pane_Riorganizzato_1',
+                onEachFeature: pop_Riorganizzato_1,
+                pointToLayer: function (feature, latlng) {
+                    var context = {
+                        feature: feature,
+                        variables: {}
+                    };
+                    return L.circleMarker(latlng, style_Riorganizzato_1_0(feature));
+                },
+            });
+            bounds_group.addLayer(layer_Riorganizzato_1);
+            map.addLayer(layer_Riorganizzato_1);
+            setBounds();
+            var i = 0;
+            layer_Administrativeboundaries_0.eachLayer(function(layer) {
+                var context = {
+                    feature: layer.feature,
+                    variables: {}
+                };
+                layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Helvetica\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Administrativeboundaries_0'});
+                labels.push(layer);
+                totalMarkers += 1;
+                  layer.added = true;
+                  addLabel(layer, i);
+                  i++;
+            });
+            resetLabels([layer_Administrativeboundaries_0]);
+            map.on("zoomend", function(){
+                resetLabels([layer_Administrativeboundaries_0]);
+            });
+            map.on("layeradd", function(){
+                resetLabels([layer_Administrativeboundaries_0]);
+            });
+            map.on("layerremove", function(){
+                resetLabels([layer_Administrativeboundaries_0]);
+            });
+            </script>
+        </body>
+    </html>
